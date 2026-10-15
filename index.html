@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXUS 3D - 150+ Smart Online Tools Universe</title>
+    <meta name="description" content="Ultimate 3D animated web toolkit featuring 150+ online tools: Image processors, calculators, developer utilities, text converters and productivity tools. 100% free and client-side.">
+    <meta name="keywords" content="toolkit, 150 tools, image resizer, bmi calculator, qr code generator, online calculators, web tools">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Core Stylesheets -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/tools.css">
+</head>
+<body>
+
+    <!-- 3D Background Canvas -->
+    <canvas id="bg-3d-canvas"></canvas>
+
+    <div class="app-wrapper">
+        <!-- Top Navigation Bar -->
+        <header class="navbar">
+            <a href="#" class="logo-brand">
+                <div class="logo-cube">
+                    <i class="fa-solid fa-cube"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>NEXUS 3D</h1>
+                    <span>Tool Universe</span>
+                </div>
+            </a>
+
+            <div class="nav-actions">
+                <div class="nav-badge">
+                    <i class="fa-solid fa-bolt"></i> <span>150+ Tools</span>
+                </div>
+                <button class="btn-fav-filter" id="btn-fav-filter">
+                    <i class="fa-solid fa-heart"></i>
+                    <span>Favorites</span>
+                    <span id="fav-count" style="background:rgba(255,255,255,0.15); padding:2px 7px; border-radius:99px; font-size:11px;">0</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-pill">
+                <i class="fa-solid fa-sparkles"></i> 100% Client-Side • Fast • Hostinger Ready
+            </div>
+            <h1 class="hero-title">
+                The Ultimate <span class="text-gradient">3D Tool Universe</span>
+            </h1>
+            <p class="hero-subtitle">
+                Over 150+ interactive utilities for designers, developers, students, and creators. All calculations run instantly and securely in your browser.
+            </p>
+
+            <!-- Search Container -->
+            <div class="search-container">
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" id="search-input" class="search-input" placeholder="Search across 150+ tools (e.g., Image, BMI, QR, Loan, Case, JSON)...">
+                    <span class="search-shortcut">Ctrl + K</span>
+                </div>
+            </div>
+
+            <!-- Stats Strip -->
+            <div class="stats-strip">
+                <div class="stat-item"><i class="fa-solid fa-layer-group"></i> <strong>150+</strong> Online Tools</div>
+                <div class="stat-item"><i class="fa-solid fa-gauge-high"></i> <strong>Zero</strong> Server Delay</div>
+                <div class="stat-item"><i class="fa-solid fa-shield-halved"></i> <strong>100%</strong> Browser Private</div>
+                <div class="stat-item"><i class="fa-solid fa-server"></i> <strong>Hostinger</strong> Compatible</div>
+            </div>
+        </section>
+
+        <!-- Categories Filter Bar -->
+        <section class="categories-wrapper">
+            <div class="categories-bar" id="categories-bar">
+                <!-- Dynamically populated by app.js -->
+            </div>
+        </section>
+
+        <!-- Tools Grid Section -->
+        <main class="tools-section">
+            <div class="section-header">
+                <h2>Browse Tools</h2>
+                <div class="tools-count-pill" id="tools-count">Loading tools...</div>
+            </div>
+
+            <div class="tools-grid" id="tools-grid">
+                <!-- 150 tools populated by app.js -->
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <div class="footer-inner">
+                <div class="footer-copy">
+                    &copy; 2026 <strong>Nexus 3D Toolkit</strong>. Built for high performance on Hostinger.
+                </div>
+                <div class="footer-links">
+                    <a href="#categories-bar"><i class="fa-solid fa-arrow-up"></i> Back to Top</a>
+                    <a href="HOSTINGER_DEPLOYMENT_GUIDE.md" target="_blank"><i class="fa-solid fa-book"></i> Hostinger Setup Guide</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Interactive Tool Modal Window -->
+    <div class="tool-modal-overlay" id="tool-modal">
+        <div class="tool-modal-window">
+            <div class="modal-header">
+                <div class="modal-header-left">
+                    <div class="modal-tool-icon" id="modal-tool-icon">
+                        <i class="fa-solid fa-cube"></i>
+                    </div>
+                    <div class="modal-title-wrap">
+                        <h3 id="modal-tool-title">Tool Name</h3>
+                        <p id="modal-tool-desc">Tool short description</p>
+                    </div>
+                </div>
+                <div class="modal-header-actions">
+                    <button class="modal-action-btn" id="modal-fav-btn" title="Add to Favorites">
+                        <i class="fa-regular fa-heart"></i>
+                    </button>
+                    <button class="modal-action-btn" id="modal-share-btn" title="Copy Tool Link">
+                        <i class="fa-solid fa-share-nodes"></i>
+                    </button>
+                    <button class="modal-action-btn modal-close-btn" id="modal-close-btn" title="Close (Esc)">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="modal-body" id="modal-tool-container">
+                <!-- Tool UI injected dynamically by ToolsEngine -->
+            </div>
+        </div>
+    </div>
+
+    <!-- External Libraries: Three.js and Confetti -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <!-- Project Scripts -->
+    <script src="js/three-scene.js"></script>
+    <script src="js/tilt.js"></script>
+    <script src="js/tools-data.js"></script>
+    <script src="js/tools-engine.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
